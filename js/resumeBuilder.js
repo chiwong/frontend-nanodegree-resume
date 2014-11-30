@@ -39,7 +39,7 @@ var bio = {
 		"twitter": "@blah",
 		"location": "Los Angeles"
 		},
-	"skills": ["HTML", "CSS", "Python"],
+	"skills": ["HTML", "CSS", "Python", "Git"],
 	"bioPic": "images.fry.jpg"
 }
 
@@ -72,11 +72,34 @@ var education = {
 	]
 }
 
+// Name Section
 var formattedName = HTMLheaderName.replace("%data%", bio.name);
 var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
 $("#header").prepend(formattedRole);
 $("#header").prepend(formattedName);
 
+// Welcome message and picture
+formattedPicture = HTMLbioPic.replace("%data%", "images/fry.jpg")
+$("#header").append(formattedPicture);
+
+var HTMLbioPic = "<img src='%data%' class='biopic'>";
+var HTMLWelcomeMsg = "<span class='welcome-message'>%data%</span>";
+
+// Contacts Section
+var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+$("#topContacts").append(formattedMobile);
+
+var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+$("#topContacts").append(formattedEmail);
+
+var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
+$("#topContacts").append(formattedTwitter);
+
+var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+$("#topContacts").append(formattedGithub);
+
+var formattedlocation = HTMLlocation.replace("%data%", bio.contacts.location);
+$("#topContacts").append(formattedlocation);
 
 // Skills section
 if (bio.skills.length > 0) {
@@ -120,10 +143,16 @@ $(document).click(function(loc) {
 })
 
 // InternationalizeButton
-$("#main").append(internationalizeButton);
-var iName = function(twonames) {
+var name = bio.name;
+var inName = function(twonames) {
+	console.log(0 + twonames);
 	// ie) twonames = "Chi Wong", want to return "Chi WONG"
-	var newName = twonames.split(" ");
+	var newName = twonames.trim().split(" ");
+	console.log(1 + newName);
 	newName[1] = newName[1].toUpperCase();
+	console.log(2 + newName);
+	console.log(3 + newName.join(" "));
 	return newName.join(" ");
 }
+
+$("#main").append(internationalizeButton);
