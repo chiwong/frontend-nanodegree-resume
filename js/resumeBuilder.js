@@ -21,9 +21,9 @@ var projects = {
 	"projects": [
 	{
 		"title": "Hydrologic Calculator",
-		"date": 2013,
+		"dates": 2013,
 		"description": "Hydrologic Calculator written in Python",
-		"images": "images.fry.jpg"
+		"images": ["images/197x148.gif"]
 	}
 	]
 }
@@ -136,6 +136,33 @@ if (work.jobs.length > 0) {
 	}
 }
 
+// Projects section using function encapsulation
+projects.display = function() {
+	for (i in projects.projects) {
+		$("#projects").append(HTMLprojectStart);
+
+		var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[i].title);
+		$(".project-entry:last").append(formattedTitle);
+
+		var formattedDates = HTMLprojectDates.replace("%data%", projects.projects[i].dates);
+		$(".project-entry:last").append(formattedDates);
+
+		var formattedDescription = HTMLprojectDescription.replace("%data%", projects.projects[i].description);
+		$(".project-entry:last").append(formattedDescription);
+
+		if (projects.projects[i].images.length > 0) {
+			for (image in projects.projects[i].images) {
+				var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[i].images[image]);
+				$(".project-entry:last").append(formattedImage);
+			}
+		}
+
+	}
+}
+
+if (projects.projects.length > 0) {
+	projects.display();
+}
 
 // Collecting Click Locations
 $(document).click(function(loc) {
